@@ -1,0 +1,18 @@
+{
+    "name": "simplercode/git-access-layer",
+    "description": "Git Access Layer Library",
+    "require": {
+        "symfony/process": "~2.6"
+    },
+    "autoload": {
+      "psr-0": {
+        "Simplercode\\GAL": "lib"
+      }
+    },
+    "authors": [
+        {
+            "name": "emcode",
+            "email": "michal@simplercode.com"
+        }
+    ]
+}
