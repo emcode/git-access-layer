@@ -2,9 +2,21 @@
 
 namespace Simplercode\GAL\Test\Command\Log\Collector\Stat;
 
-class ShortStatValuesFixture
+class ShortStatFixture
 {
-    public static $examples = array(
+    public static $lineExamples = array(
+        self::SHORT_STAT_1_1_1 => '1 file changed, 1 insertion(+), 1 deletion(-)',
+        self::SHORT_STAT_3_3_3 => '3 files changed, 3 insertions(+), 3 deletions(-)',
+        self::SHORT_STAT_1_3_3 => '1 file changed, 3 insertions(+), 3 deletions(-)',
+        self::SHORT_STAT_2_1_3 => '2 files changed, 1 insertion(+), 3 deletions(-)',
+        self::SHORT_STAT_2_3_1 => '2 files changed, 3 insertions(+), 1 deletion(-)',
+        self::SHORT_STAT_3_3_N => '3 files changed, 3 insertions(+)',
+        self::SHORT_STAT_3_N_3 => '3 files changed, 3 deletions(-)',
+        self::SHORT_STAT_1_1_N => '1 file changed, 1 insertion(+)',
+        self::SHORT_STAT_1_N_1 => '1 file changed, 1 deletion(-)',
+    );
+
+    public static $singlelineValueExamples = array(
         '4 files changed, 2 insertion(+), 3 deletion(-)' => array(
             'file_num' => 4,
             'insertion_num' => 2,
@@ -45,15 +57,63 @@ class ShortStatValuesFixture
             'insertion_num' => 1,
             'deletion_num' => null
         ),
-        '1 file changed, 1 deletion(+)' => array(
+        '1 file changed, 1 deletion(-)' => array(
             'file_num' => 1,
             'insertion_num' => null,
             'deletion_num' => 1
         ),
     );
 
-    const SHORT_STAT_ALL_SINGULAR = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    public static $multilineValueExamples = array(
+        self::SHORT_STAT_1_1_1 => array(
+            'file_num' => 1,
+            'insertion_num' => 1,
+            'deletion_num' => 1
+        ),
+        self::SHORT_STAT_3_3_3 => array(
+            'file_num' => 3,
+            'insertion_num' => 3,
+            'deletion_num' => 3
+        ),
+        self::SHORT_STAT_1_3_3 => array(
+            'file_num' => 1,
+            'insertion_num' => 3,
+            'deletion_num' => 3
+        ),
+        self::SHORT_STAT_2_1_3 => array(
+            'file_num' => 2,
+            'insertion_num' => 1,
+            'deletion_num' => 3
+        ),
+        self::SHORT_STAT_2_3_1 => array(
+            'file_num' => 2,
+            'insertion_num' => 3,
+            'deletion_num' => 1
+        ),
+        self::SHORT_STAT_3_3_N => array(
+            'file_num' => 3,
+            'insertion_num' => 3,
+            'deletion_num' => null
+        ),
+         self::SHORT_STAT_3_N_3 => array(
+             'file_num' => 3,
+             'insertion_num' => null,
+             'deletion_num' => 3
+         ),
+         self::SHORT_STAT_1_1_N => array(
+             'file_num' => 1,
+             'insertion_num' => 1,
+             'deletion_num' => null
+         ),
+         self::SHORT_STAT_1_N_1 => array(
+             'file_num' => 1,
+             'insertion_num' => null,
+             'deletion_num' => 1
+         ),
+    );
+
+    const SHORT_STAT_1_1_1 = <<<FIX
+commit 103e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -63,8 +123,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_ALL_MULTI = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_3_3_3 = <<<FIX
+commit 113e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -74,8 +134,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_ALL_MIX_01 = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_1_3_3 = <<<FIX
+commit 123e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -85,8 +145,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_ALL_MIX_02 = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_2_1_3 = <<<FIX
+commit 133e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -96,8 +156,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_ALL_MIX_03 = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_2_3_1 = <<<FIX
+commit 143e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -107,8 +167,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_FILES_INSERTIONS_PLURAL = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_3_3_N = <<<FIX
+commit 153e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -118,8 +178,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_FILES_DELETIONS_PLURAL = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_3_N_3 = <<<FIX
+commit 163e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -129,8 +189,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_FILES_INSERTIONS_SINGULAR = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_1_1_N = <<<FIX
+commit 173e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 
@@ -140,8 +200,8 @@ Date:   Tue Nov 11 11:25:53 2014 +0100
 
 FIX;
 
-    const SHORT_STAT_FILES_DELETIONS_SINGULAR = <<<FIX
-commit 7b3e0d29edfd4d2134e37f0631c6bdfd02913f94
+    const SHORT_STAT_1_N_1 = <<<FIX
+commit 183e0d29edfd4d2134e37f0631c6bdfd02913f94
 Author: John Smith <something@example.abc>
 Date:   Tue Nov 11 11:25:53 2014 +0100
 

@@ -19,12 +19,11 @@ class ShortStatValuesTest extends PHPUnit_Framework_TestCase
 
     public function getSingleLineExamples()
     {
-        $exampleLines = array_keys(ShortStatValuesFixture::$examples);
         $data = array();
 
-        foreach($exampleLines as $line)
+        foreach(ShortStatFixture::$singlelineValueExamples as $line => $result)
         {
-            $data[] = array($line);
+            $data[] = array($line, $result);
         }
 
         return $data;
@@ -33,17 +32,30 @@ class ShortStatValuesTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider getSingleLineExamples
      */
-    public function testStatValuesIsExtractedCorrectlyFromSingleLine($line)
+    public function testStatValuesAreExtractedCorrectlyFromSingleLine($singleLine, $expectedResult)
     {
-        if (!isset(ShortStatValuesFixture::$examples[$line]))
+        $realResult = $this->collector->collect($singleLine);
+        $this->assertEquals($expectedResult, $realResult);
+    }
+
+    public function getMultiLineExamples()
+    {
+        $data = array();
+
+        foreach(ShortStatFixture::$multilineValueExamples as $lines => $result)
         {
-            throw new \InvalidArgumentException(sprintf(
-                'Received line that does not exist in fixtures: %s', $line
-            ));
+            $data[] = array($lines, $result);
         }
 
-        $expectedResult = ShortStatValuesFixture::$examples[$line];
-        $realResult = $this->collector->collect($line);
+        return $data;
+    }
+
+    /**
+     * @dataProvider getMultiLineExamples
+     */
+    public function testStatValuesAreExtractedCorrectlyFromMultipleLines($commitLines, $expectedResult)
+    {
+        $realResult = $this->collector->collect($commitLines);
         $this->assertEquals($expectedResult, $realResult);
     }
 }

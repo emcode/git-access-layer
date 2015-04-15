@@ -5,7 +5,6 @@ namespace Simplercode\GAL\Command\Log;
 use Simplercode\GAL\Collector\BatchCollectorInterface;
 use Simplercode\GAL\Collector\CollectorInterface;
 use Simplercode\GAL\Command\CommandInterface;
-use Simplercode\GAL\Format;
 use Simplercode\GAL\Processor;
 
 class LogCommand implements CommandInterface

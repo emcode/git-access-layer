@@ -6,16 +6,16 @@ use Simplercode\GAL\Collector\CollectorInterface;
 
 class ShortStatValues implements CollectorInterface
 {
-    protected $numberLabelPattern = "(?P<%s>\d+) (?:%s)(?:\D+)";
-    protected $statsPattern = '/%s(?:\D+)((%s)|(%s))((%s)|(%s)|(?:))/m';
+    protected $numberLabelPattern = "(?P<%s>\d+) (?:%s)";
+    protected $statsPattern = '/%s((%s)|(%s)|(?:))((%s)|(%s)|(?:))$/m';
     protected $pattern;
 
     protected $regexLabelToValueType = array(
-        'abc_file_num' => 'file',
-        'fst_insertion_num' => 'insertion?',
-        'fst_deletion_num' => 'deletion?',
-        'sec_insertion_num' => 'insertion?',
-        'sec_deletion_num' => 'deletion?',
+        'abc_file_num' => 'file.* changed, ',
+        'fst_insertion_num' => 'insertion.*\(\+\), ',
+        'fst_deletion_num' => 'deletion.*\(\-\)',
+        'sec_insertion_num' => 'insertion.*\(\+\)',
+        'sec_deletion_num' => 'deletion.*\(\-\)',
     );
 
     protected function getPattern()
@@ -40,8 +40,6 @@ class ShortStatValues implements CollectorInterface
         $pattern = vsprintf($this->statsPattern, $subPatterns);
         return $pattern;
     }
-
-    protected $name;
 
     public function collect($rawData)
     {

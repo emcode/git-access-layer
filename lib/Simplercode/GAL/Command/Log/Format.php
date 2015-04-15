@@ -1,6 +1,6 @@
 <?php
 
-namespace Simplercode\GAL;
+namespace Simplercode\GAL\Command\Log;
 
 class Format
 {
