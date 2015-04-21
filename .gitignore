@@ -1,4 +1,5 @@
-vendor
+/build
+/vendor
 .idea
 example/test.php
 *~
