@@ -2,6 +2,7 @@
 
 function validateRepoPathAndShowMessage($scriptArguments, $pathIndex = 1)
 {
+    $pathToRepo = null;
     $error = null;
 
     if (empty($scriptArguments[$pathIndex]))
