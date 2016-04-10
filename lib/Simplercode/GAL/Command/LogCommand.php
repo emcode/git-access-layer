@@ -68,49 +68,4 @@ class LogCommand extends AbstractCommand
         $format = implode(Format::GIT_EOL, $parts);
         return $format;
     }
-
-    private static function extractAuthorName($line)
-    {
-        $matches = array();
-        $num = preg_match('/: (?P<name>[^<]+) </', $line, $matches);
-
-        if (!$num)
-        {
-            throw new \RuntimeException(sprintf(
-                'Could not extract commit author name from string: "%s"', $line
-            ));
-        }
-
-        return $matches['name'];
-    }
-
-    private static function extractAuthorEmail($line)
-    {
-        $matches = array();
-        $num = preg_match('/<(?P<email>[^<]+)>/', $line, $matches);
-
-        if (!$num)
-        {
-            throw new \RuntimeException(sprintf(
-                'Could not extract commit author name from string: "%s"', $line
-            ));
-        }
-
-        return $matches['email'];
-    }
-
-    private static function extractCommitDate($dateString)
-    {
-        $normalizedString = trim(substr($dateString, strlen('Date:')));
-        $dateTime = \DateTime::createFromFormat('Y-m-d H:i:s O', $normalizedString);
-
-        if (!$dateTime)
-        {
-            throw new \RuntimeException(sprintf(
-                'Could not extract commit date from string: "%s"', $normalizedString
-            ));
-        }
-
-        return $dateTime;
-    }
 }

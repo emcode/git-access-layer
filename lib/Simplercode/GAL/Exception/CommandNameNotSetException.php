@@ -2,8 +2,6 @@
 
 namespace Simplercode\GAL\Exception;
 
-use Simplercode\GAL\Collector\CollectorInterface;
-
 class CommandNameNotSetException extends \RuntimeException
 {
     public function __construct($commandClass, $exceptionSourceMethodName)
