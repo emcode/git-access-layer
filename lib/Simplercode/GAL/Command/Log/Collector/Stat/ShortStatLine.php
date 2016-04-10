@@ -15,7 +15,7 @@ class ShortStatLine implements CollectorInterface
 
         if (!$num)
         {
-            return null;
+            return;
         }
 
         return $matches[0];

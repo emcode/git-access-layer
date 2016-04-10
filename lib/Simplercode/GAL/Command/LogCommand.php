@@ -12,11 +12,12 @@ class LogCommand extends AbstractCommand
     {
         return 'log';
     }
-    
+
     public function parseOutput($output)
     {
         $rawCommits = $this->splitOutputToCommits($output);
         $commits = $this->parseRawCommits($rawCommits);
+
         return $commits;
     }
 
@@ -24,6 +25,7 @@ class LogCommand extends AbstractCommand
     {
         $commits = explode(Format::CS, $output);
         array_shift($commits);
+
         return $commits;
     }
 
@@ -57,15 +59,16 @@ class LogCommand extends AbstractCommand
 
         foreach(Format::$inlineFormats as $label => $format)
         {
-            $parts[] = $label . ':' . $format;
+            $parts[] = $label.':'.$format;
         }
 
         foreach(Format::$blockFormats as $label => $format)
         {
-            $parts[] = $label . ':' . Format::GIT_EOL . $format . Format::GIT_EOL . ':' . $label;
+            $parts[] = $label.':'.Format::GIT_EOL.$format.Format::GIT_EOL.':'.$label;
         }
 
         $format = implode(Format::GIT_EOL, $parts);
+
         return $format;
     }
 }

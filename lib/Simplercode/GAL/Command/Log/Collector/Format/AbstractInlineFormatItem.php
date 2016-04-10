@@ -16,7 +16,7 @@ abstract class AbstractInlineFormatItem implements CollectorInterface
 
         if (!$num)
         {
-            return null;
+            return;
         }
 
         return $matches['value'];

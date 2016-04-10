@@ -51,5 +51,4 @@ Improvements in LogEvent entity - added ability to easy list events using logger
 
 FIX;
 
-
 }

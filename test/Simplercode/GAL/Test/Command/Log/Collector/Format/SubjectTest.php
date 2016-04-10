@@ -3,12 +3,10 @@
 namespace Simplercode\GAL\Test\Command\Log\Collector\Format;
 
 use PHPUnit_Framework_TestCase;
-use Simplercode\GAL\Command\Log\Collector\Format\AuthorEmail;
-use Simplercode\GAL\Command\Log\Collector\Format\AuthorName;
 use Simplercode\GAL\Command\Log\Collector\Format\Subject;
 use Simplercode\GAL\Test\Command\Log\LogCommandFixture;
 
-class subjectTest extends PHPUnit_Framework_TestCase
+class SubjectTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var Subject

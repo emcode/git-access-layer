@@ -14,7 +14,7 @@ class ProcessorTest extends PHPUnit_Framework_TestCase
 
     public function testCustomPathToBinCanBeSetViaConstructor()
     {
-        $binPath = "/custom/path/git";
+        $binPath = '/custom/path/git';
         $processor = new Processor(null, true, $binPath);
         $this->assertEquals($processor->getPathToGitBin(), $binPath);
     }
@@ -22,38 +22,38 @@ class ProcessorTest extends PHPUnit_Framework_TestCase
     public function testBareRepoArgsCanBeSetViaConstructor()
     {
         $isBare = true;
-        $repoPath = "/custom/path/to/bare/repo";
+        $repoPath = '/custom/path/to/bare/repo';
         $processor = new Processor($repoPath, $isBare);
-        $this->assertContains(sprintf("--git-dir=%s", $repoPath), $processor->getRepoArgs());
+        $this->assertContains(sprintf('--git-dir=%s', $repoPath), $processor->getRepoArgs());
     }
 
     public function testNonBareRepoArgsCanBeSetViaConstructor()
     {
         $isBare = false;
-        $repoPath = "/custom/path/to/repo";
+        $repoPath = '/custom/path/to/repo';
         $processor = new Processor($repoPath, $isBare);
-        $this->assertContains(sprintf("--git-dir=%s/.git", $repoPath), $processor->getRepoArgs());
-        $this->assertContains(sprintf("--work-tree=%s", $repoPath), $processor->getRepoArgs());
+        $this->assertContains(sprintf('--git-dir=%s/.git', $repoPath), $processor->getRepoArgs());
+        $this->assertContains(sprintf('--work-tree=%s', $repoPath), $processor->getRepoArgs());
     }
 
     public function testCreateRepoArgsMethodForNonBareRepo()
     {
         $isBare = false;
-        $repoPath = "/custom/path/to/repo";
+        $repoPath = '/custom/path/to/repo';
         $processor = new Processor();
         $nonBareArgs = $processor->createRepoArgs($repoPath, $isBare);
-        $this->assertContains(sprintf("--git-dir=%s/.git", $repoPath), $nonBareArgs);
-        $this->assertContains(sprintf("--work-tree=%s", $repoPath), $nonBareArgs);
+        $this->assertContains(sprintf('--git-dir=%s/.git', $repoPath), $nonBareArgs);
+        $this->assertContains(sprintf('--work-tree=%s', $repoPath), $nonBareArgs);
         $this->assertCount(2, $nonBareArgs);
     }
 
     public function testCreateRepoArgsMethodForBareRepo()
     {
         $isBare = true;
-        $repoPath = "/custom/path/to/another/repo";
+        $repoPath = '/custom/path/to/another/repo';
         $processor = new Processor();
         $bareArgs = $processor->createRepoArgs($repoPath, $isBare);
-        $this->assertContains(sprintf("--git-dir=%s", $repoPath), $bareArgs);
+        $this->assertContains(sprintf('--git-dir=%s', $repoPath), $bareArgs);
         $this->assertCount(1, $bareArgs);
     }
 

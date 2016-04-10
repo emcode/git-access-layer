@@ -10,6 +10,7 @@ class DynamicCommand extends AbstractCommand
 
     /**
      * @param array $runtimeArgs
+     *
      * @return mixed
      */
     public function execute(array $runtimeArgs)
@@ -18,10 +19,10 @@ class DynamicCommand extends AbstractCommand
         {
             throw new CommandNameNotSetException(self::class, __METHOD__);
         }
-        
+
         return parent::execute($runtimeArgs);
     }
-    
+
     /**
      * @return string|null
      */
@@ -32,11 +33,13 @@ class DynamicCommand extends AbstractCommand
 
     /**
      * @param string $commandName
+     *
      * @return DynamicCommand
      */
     public function setCommandName($commandName)
     {
         $this->commandName = $commandName;
+
         return $this;
     }
 }

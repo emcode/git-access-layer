@@ -6,5 +6,5 @@ use Simplercode\GAL\Command\Base\DynamicCommand;
 
 class PushCommand extends DynamicCommand
 {
-    protected $commandName = "push";
+    protected $commandName = 'push';
 }

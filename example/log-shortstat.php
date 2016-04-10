@@ -1,6 +1,7 @@
 <?php
-require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/helper-functions.php';
+
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/helper-functions.php';
 
 use Simplercode\GAL\Command\LogCommand;
 use Simplercode\GAL\Command\Log\Format;
@@ -21,7 +22,7 @@ $logCommand = new LogCommand($processor, $collector);
 $result = $logCommand->execute(array(
     '-5',
     '--shortstat',
-    '--pretty=tformat:' . Format::CS . Format::GIT_EOL . LogCommand::getDefaultFormat()
+    '--pretty=tformat:'.Format::CS.Format::GIT_EOL.LogCommand::getDefaultFormat(),
 ));
 
 print_r($result);

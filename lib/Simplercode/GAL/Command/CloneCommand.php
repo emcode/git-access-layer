@@ -6,5 +6,5 @@ use Simplercode\GAL\Command\Base\DynamicCommand;
 
 class CloneCommand extends DynamicCommand
 {
-    protected $commandName = "clone";
+    protected $commandName = 'clone';
 }

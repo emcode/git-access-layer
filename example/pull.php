@@ -1,10 +1,10 @@
 <?php
-require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/helper-functions.php';
+
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/helper-functions.php';
 
 use Simplercode\GAL\Command\PullCommand;
 use Simplercode\GAL\Processor;
-use Symfony\Component\Process\ProcessBuilder;
 
 $repoPath = $argv[1];
 

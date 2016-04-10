@@ -27,7 +27,7 @@ class LogCommandTest extends PHPUnit_Framework_TestCase
         $rawCommits = $this->logCommand->splitOutputToCommits(LogCommandFixture::SPLITTING_FIXTURE_THREE);
         $this->assertInternalType('array', $rawCommits);
         $this->assertCount(3, $rawCommits);
-        $this->assertContains("xyz qwerty", $rawCommits[2]);
+        $this->assertContains('xyz qwerty', $rawCommits[2]);
     }
 
     public function testSplittingOfNone()
@@ -42,6 +42,6 @@ class LogCommandTest extends PHPUnit_Framework_TestCase
         $rawCommits = $this->logCommand->splitOutputToCommits(LogCommandFixture::SPLITTING_FIXTURE_ONE);
         $this->assertInternalType('array', $rawCommits);
         $this->assertCount(1, $rawCommits);
-        $this->assertContains("abcd efgh", $rawCommits[0]);
+        $this->assertContains('abcd efgh', $rawCommits[0]);
     }
 }

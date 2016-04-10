@@ -27,16 +27,15 @@ class Processor
     protected $builder;
 
     /**
-     * @param null $pathToRepo Path to working tree (for non bare repos) or repo dir (for bare repos)
-     * @param bool $isRepoBare
+     * @param null   $pathToRepo   Path to working tree (for non bare repos) or repo dir (for bare repos)
+     * @param bool   $isRepoBare
      * @param string $pathToGitBin
      */
-    public function __construct($pathToRepo = null, $isRepoBare = true, $pathToGitBin = "git")
+    public function __construct($pathToRepo = null, $isRepoBare = true, $pathToGitBin = 'git')
     {
         $this->pathToGitBin = $pathToGitBin;
 
-        if (null !== $pathToRepo)
-        {
+        if (null !== $pathToRepo) {
             $this->repoArgs = $this->createRepoArgs($pathToRepo, $isRepoBare);
         }
     }
@@ -55,8 +54,7 @@ class Processor
         $initArgs = array();
         $initArgs[] = $gitBin;
 
-        if (null !== $otherArgs)
-        {
+        if (null !== $otherArgs) {
             $initArgs = array_merge($initArgs, $otherArgs);
         }
 
@@ -67,14 +65,11 @@ class Processor
     {
         $args = array();
 
-        if ($isBare)
-        {
-            $args[] = '--git-dir=' . $pathToRepo;
-
-        } else
-        {
-            $args[] = '--git-dir=' . $pathToRepo . '/.git';
-            $args[] = '--work-tree=' . $pathToRepo;
+        if ($isBare) {
+            $args[] = '--git-dir='.$pathToRepo;
+        } else {
+            $args[] = '--git-dir='.$pathToRepo.'/.git';
+            $args[] = '--work-tree='.$pathToRepo;
         }
 
         return $args;
@@ -82,13 +77,11 @@ class Processor
 
     public function execute(array $runtimeArgs)
     {
-        if (null === $this->builder)
-        {
+        if (null === $this->builder) {
             $this->builder = new ProcessBuilder();
         }
 
-        if (null === $this->initArgs)
-        {
+        if (null === $this->initArgs) {
             $this->initArgs = $this->createInitArgs($this->pathToGitBin, $this->repoArgs);
             $this->builder->setPrefix($this->initArgs);
         }
@@ -97,9 +90,9 @@ class Processor
         $process = $this->builder->getProcess();
         $process->mustRun();
         $output = $process->getOutput();
+
         return $output;
     }
-
 
     public function setPathToRepo($pathToRepo, $isRepoBare = true)
     {
@@ -118,7 +111,7 @@ class Processor
 
     public function areInitArgsSet()
     {
-        return (null !== $this->initArgs);
+        return null !== $this->initArgs;
     }
 
     /**
@@ -163,11 +156,13 @@ class Processor
 
     /**
      * @param ProcessBuilder $builder
+     *
      * @return Processor
      */
     public function setBuilder(ProcessBuilder $builder)
     {
         $this->builder = $builder;
+
         return $this;
     }
 }

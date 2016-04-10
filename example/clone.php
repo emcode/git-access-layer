@@ -1,6 +1,7 @@
 <?php
-require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/helper-functions.php';
+
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/helper-functions.php';
 
 use Simplercode\GAL\Command\CloneCommand;
 use Simplercode\GAL\Processor;
@@ -20,7 +21,7 @@ $result = $initCommand->execute(array(
     $repoPath,
     $targetPath,
     '--bare',
-    '--mirror'
+    '--mirror',
 ));
 
 print_r($result);

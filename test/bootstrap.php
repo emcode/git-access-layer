@@ -1,3 +1,4 @@
 <?php
+
 $loader = require __DIR__.'/../vendor/autoload.php';
 $loader->add('Simplercode\GAL', __DIR__);

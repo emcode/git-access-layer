@@ -13,12 +13,14 @@ interface CollectableCommandInterface
 
     /**
      * @param CollectorInterface $collector
+     *
      * @return $this
      */
     public function setCollector(CollectorInterface $collector);
 
     /**
      * @param CollectorInterface $collector
+     *
      * @return mixed
      */
     public function addCollector(CollectorInterface $collector);

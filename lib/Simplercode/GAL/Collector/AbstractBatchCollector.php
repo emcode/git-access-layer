@@ -19,6 +19,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
 
     /**
      * @param string $rawData
+     *
      * @return string[]|array
      */
     public function collect($rawData)
@@ -35,6 +36,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
 
     /**
      * @param CollectorInterface[] $collectors
+     *
      * @return $this
      */
     public function setCollectors(array $collectors)
@@ -43,7 +45,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
 
         // add new collectors in way that ensures that
         // keys are collector names and are not added twice
-        foreach($collectors as $c)
+        foreach ($collectors as $c)
         {
             $this->addCollector($c);
         }
@@ -79,6 +81,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
         }
 
         $this->collectors[$name] = $collector;
+
         return $this;
     }
 
@@ -96,6 +99,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
     {
         $collector = $this->getCollectorByName($name);
         unset($this->collectors[$name]);
+
         return $collector;
     }
 
@@ -103,6 +107,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
     {
         $name = $collector->getName();
         $this->collectors[$name] = $collector;
+
         return $this;
     }
 }

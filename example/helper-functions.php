@@ -27,12 +27,14 @@ function validateRepoPathAndShowMessage($scriptArguments, $pathIndex = 1)
     }
 
     echo sprintf('Reading repository from path: %s', $pathToRepo) . PHP_EOL;
+
     return $pathToRepo;
 }
 
 function checkIfBareAndShowMessage($pathToRepo)
 {
     $isBare = !is_dir($pathToRepo . '/.git');
-    echo sprintf('This repository is %s', $isBare ? "bare" : "not bare") . PHP_EOL;
+    echo sprintf('This repository is %s', $isBare ? 'bare' : 'not bare') . PHP_EOL;
+
     return $isBare;
 }

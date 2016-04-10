@@ -4,9 +4,7 @@ namespace Simplercode\GAL\Test\Command\Log\Collector\Format;
 
 use PHPUnit_Framework_TestCase;
 use Simplercode\GAL\Command\Log\Collector\DefaultLogCollector;
-use Simplercode\GAL\Command\Log\Collector\Format\AuthorName;
 use Simplercode\GAL\Command\Log\Collector\Format\Subject;
-use Simplercode\GAL\Exception\CollectorAlreadyAddedException;
 use Simplercode\GAL\Test\Command\Log\LogCommandFixture;
 
 class DefaultLogCollectorTest extends PHPUnit_Framework_TestCase

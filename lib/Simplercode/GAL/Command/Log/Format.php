@@ -25,12 +25,12 @@ class Format
     const COMMITTER_DATE_RELATIVE = 'committer_date_relative';
     const COMMITTER_DATE_TIMESTAMP = 'committer_date_timestamp';
     const SUBJECT = 'subject';
-    const SANITIZED_SUBJECT = "sanitized_subject";
-    const REF_NAMES = "ref_names";
+    const SANITIZED_SUBJECT = 'sanitized_subject';
+    const REF_NAMES = 'ref_names';
 
     // block formats
     const BODY = 'body';
-    const RAW_BODY = "raw_body";
+    const RAW_BODY = 'raw_body';
 
     public static $inlineFormats = array(
         self::ABBR_HASH => '%h',
@@ -51,7 +51,7 @@ class Format
         self::COMMITTER_DATE_TIMESTAMP => '%ct',
         self::SUBJECT => '%s',
         self::SANITIZED_SUBJECT => '%f',
-        self::REF_NAMES => '%d'
+        self::REF_NAMES => '%d',
     );
 
     public static $blockFormats = array(

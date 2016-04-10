@@ -2,7 +2,6 @@
 
 namespace Simplercode\GAL\Collector;
 
-
 class StringCollector implements CollectorInterface
 {
     /**
@@ -10,11 +9,12 @@ class StringCollector implements CollectorInterface
      */
     public function getName()
     {
-        return "string";
+        return 'string';
     }
 
     /**
      * @param string $rawData
+     *
      * @return string
      */
     public function collect($rawData)

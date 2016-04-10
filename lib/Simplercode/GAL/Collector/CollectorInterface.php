@@ -11,6 +11,7 @@ interface CollectorInterface
 
     /**
      * @param string $rawData
+     *
      * @return mixed
      */
     public function collect($rawData);

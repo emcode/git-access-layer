@@ -6,5 +6,5 @@ use Simplercode\GAL\Command\Base\DynamicCommand;
 
 class RemoteCommand extends DynamicCommand
 {
-    protected $commandName = "remote";
+    protected $commandName = 'remote';
 }

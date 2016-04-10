@@ -32,12 +32,13 @@ class ShortStatValues implements CollectorInterface
     {
         $subPatterns = array();
 
-        foreach($this->regexLabelToValueType as $label => $type)
+        foreach ($this->regexLabelToValueType as $label => $type)
         {
             $subPatterns[] = sprintf($this->numberLabelPattern, $label, $type);
         }
 
         $pattern = vsprintf($this->statsPattern, $subPatterns);
+
         return $pattern;
     }
 
@@ -48,11 +49,11 @@ class ShortStatValues implements CollectorInterface
 
         if (!$num)
         {
-            return null;
+            return;
         }
 
-
         $collectingResult = $this->processMatchingResult($matches);
+
         return $collectingResult;
     }
 
@@ -60,15 +61,14 @@ class ShortStatValues implements CollectorInterface
     {
         $result = array();
 
-        foreach($this->regexLabelToValueType as $regexLabel => $valueType)
+        foreach ($this->regexLabelToValueType as $regexLabel => $valueType)
         {
             if (!isset($matches[$regexLabel]))
             {
                 continue;
             }
 
-            $foundValue = ($matches[$regexLabel] !== "") ? ((int) $matches[$regexLabel]) : null;
-
+            $foundValue = ($matches[$regexLabel] !== '') ? ((int) $matches[$regexLabel]) : null;
             $endUserLabel = substr($regexLabel, 4);
 
             if (!isset($result[$endUserLabel]) || (null === $result[$endUserLabel]))

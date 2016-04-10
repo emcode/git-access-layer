@@ -4,7 +4,6 @@ namespace Simplercode\GAL\Test\Command\Log\Collector\Stat;
 
 use PHPUnit_Framework_TestCase;
 use Simplercode\GAL\Command\Log\Collector\Stat\ShortStatLine;
-use Simplercode\GAL\Command\Log\Collector\Stat\ShortStatValues;
 
 class ShortStatLineTest extends PHPUnit_Framework_TestCase
 {

@@ -26,7 +26,7 @@ class DefaultLogCollector extends AbstractBatchCollector
             new AuthorEmail(),
             new AuthorDate(),
             new Subject(),
-            new Body()
+            new Body(),
         );
     }
 }
