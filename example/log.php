@@ -2,7 +2,7 @@
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/helper-functions.php';
 
-use Simplercode\GAL\Command\Log\LogCommand;
+use Simplercode\GAL\Command\LogCommand;
 use Simplercode\GAL\Command\Log\Format;
 use Simplercode\GAL\Command\Log\Collector\DefaultLogCollector;
 use Simplercode\GAL\Processor;

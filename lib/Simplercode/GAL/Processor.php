@@ -152,4 +152,22 @@ class Processor
     {
         $this->initArgs = $initArgs;
     }
+
+    /**
+     * @return ProcessBuilder
+     */
+    public function getBuilder()
+    {
+        return $this->builder;
+    }
+
+    /**
+     * @param ProcessBuilder $builder
+     * @return Processor
+     */
+    public function setBuilder(ProcessBuilder $builder)
+    {
+        $this->builder = $builder;
+        return $this;
+    }
 }
