@@ -15,9 +15,12 @@ $processBuilder->setTimeout(160);
 
 $processor = new Processor();
 $processor->setBuilder($processBuilder);
+$processor->setRunCallback(function ($type, $buffer) {
+    echo 'GIT > ' . $buffer;
+});
 
-$initCommand = new CloneCommand($processor);
-$result = $initCommand->execute(array(
+$cloneCommand = new CloneCommand($processor);
+$result = $cloneCommand->execute(array(
     $repoPath,
     $targetPath,
     '--bare',

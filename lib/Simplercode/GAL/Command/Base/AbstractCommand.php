@@ -20,7 +20,7 @@ abstract class AbstractCommand implements CommandInterface, CollectableCommandIn
     protected $processor;
 
     /**
-     * CollectableCommand constructor.
+     * AbstractCommand constructor.
      *
      * @param Processor               $processor
      * @param CollectorInterface|null $collector

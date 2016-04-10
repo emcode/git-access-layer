@@ -27,6 +27,14 @@ class Processor
     protected $builder;
 
     /**
+     * Function that will be run many times during command execution.
+     * This gives you ability to incrementally show output to the user during long running tasks.
+     * 
+     * @var callable|null
+     */
+    protected $runCallback;
+
+    /**
      * @param null   $pathToRepo   Path to working tree (for non bare repos) or repo dir (for bare repos)
      * @param bool   $isRepoBare
      * @param string $pathToGitBin
@@ -35,7 +43,8 @@ class Processor
     {
         $this->pathToGitBin = $pathToGitBin;
 
-        if (null !== $pathToRepo) {
+        if (null !== $pathToRepo)
+        {
             $this->repoArgs = $this->createRepoArgs($pathToRepo, $isRepoBare);
         }
     }
@@ -77,18 +86,20 @@ class Processor
 
     public function execute(array $runtimeArgs)
     {
-        if (null === $this->builder) {
+        if (null === $this->builder)
+        {
             $this->builder = new ProcessBuilder();
         }
 
-        if (null === $this->initArgs) {
+        if (null === $this->initArgs)
+        {
             $this->initArgs = $this->createInitArgs($this->pathToGitBin, $this->repoArgs);
             $this->builder->setPrefix($this->initArgs);
         }
 
         $this->builder->setArguments($runtimeArgs);
         $process = $this->builder->getProcess();
-        $process->mustRun();
+        $process->mustRun($this->runCallback);
         $output = $process->getOutput();
 
         return $output;
@@ -162,6 +173,26 @@ class Processor
     public function setBuilder(ProcessBuilder $builder)
     {
         $this->builder = $builder;
+
+        return $this;
+    }
+
+    /**
+     * @return callable|null
+     */
+    public function getRunCallback()
+    {
+        return $this->runCallback;
+    }
+
+    /**
+     * @param callable|null $runCallback
+     * 
+     * @return Processor
+     */
+    public function setRunCallback($runCallback)
+    {
+        $this->runCallback = $runCallback;
 
         return $this;
     }

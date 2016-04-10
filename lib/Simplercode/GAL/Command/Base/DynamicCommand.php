@@ -6,6 +6,11 @@ use Simplercode\GAL\Exception\CommandNameNotSetException;
 
 class DynamicCommand extends AbstractCommand
 {
+    /**
+     * This field should be set / overridden in more specific child class.
+     *
+     * @var string
+     */
     protected $commandName;
 
     /**
