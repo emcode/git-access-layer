@@ -1,6 +1,7 @@
 {
     "name": "simplercode/git-access-layer",
     "description": "Git Access Layer Library",
+    "license": "MIT",
     "require": {
         "symfony/process": "~3.0"
     },
