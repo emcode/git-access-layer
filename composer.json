@@ -3,10 +3,10 @@
     "description": "Git Access Layer Library",
     "license": "MIT",
     "require": {
-        "symfony/process": "~3.0"
+        "symfony/process": "~6.0"
     },
     "require-dev": {
-        "satooshi/php-coveralls": "^1.0",
+        "php-coveralls/php-coveralls": "^1.0",
         "phpunit/phpcov": "^3.0"
     },
     "autoload": {
