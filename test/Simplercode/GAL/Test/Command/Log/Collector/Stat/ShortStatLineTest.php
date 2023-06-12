@@ -2,22 +2,22 @@
 
 namespace Simplercode\GAL\Test\Command\Log\Collector\Stat;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Simplercode\GAL\Command\Log\Collector\Stat\ShortStatLine;
 
-class ShortStatLineTest extends PHPUnit_Framework_TestCase
+class ShortStatLineTest extends TestCase
 {
     /**
      * @var ShortStatLine
      */
     protected $collector;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->collector = new ShortStatLine();
     }
 
-    public function getLineExamples()
+    public static function getLineExamples()
     {
         $data = array();
 

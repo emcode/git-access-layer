@@ -2,9 +2,9 @@
 
 namespace Simplercode\GAL;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ProcessorTest extends PHPUnit_Framework_TestCase
+class ProcessorTest extends TestCase
 {
     public function testDefaultPathToBinIsGit()
     {

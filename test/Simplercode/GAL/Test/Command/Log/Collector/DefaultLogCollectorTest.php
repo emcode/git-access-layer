@@ -2,19 +2,19 @@
 
 namespace Simplercode\GAL\Test\Command\Log\Collector\Format;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Simplercode\GAL\Command\Log\Collector\DefaultLogCollector;
 use Simplercode\GAL\Command\Log\Collector\Format\Subject;
 use Simplercode\GAL\Test\Command\Log\LogCommandFixture;
 
-class DefaultLogCollectorTest extends PHPUnit_Framework_TestCase
+class DefaultLogCollectorTest extends TestCase
 {
     /**
      * @var DefaultLogCollector
      */
     protected $collector;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->collector = new DefaultLogCollector();
     }
@@ -60,11 +60,9 @@ class DefaultLogCollectorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, count($collectorNames));
     }
 
-    /**
-     * @expectedException \Simplercode\GAL\Exception\CollectorAlreadyAddedException
-     */
     public function testCannotAddSameChildCollectorTwice()
     {
+        $this->expectException(\Simplercode\GAL\Exception\CollectorAlreadyAddedException::class);
         $this->collector->setCollectors(array()); // remove default collectors
         $this->collector->addCollector(new Subject());
         $this->collector->addCollector(new Subject());

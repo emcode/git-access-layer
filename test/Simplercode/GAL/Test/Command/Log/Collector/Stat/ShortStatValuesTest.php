@@ -2,22 +2,22 @@
 
 namespace Simplercode\GAL\Test\Command\Log\Collector\Stat;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Simplercode\GAL\Command\Log\Collector\Stat\ShortStatValues;
 
-class ShortStatValuesTest extends PHPUnit_Framework_TestCase
+class ShortStatValuesTest extends TestCase
 {
     /**
      * @var ShortStatValues
      */
     protected $collector;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->collector = new ShortStatValues();
     }
 
-    public function getSingleLineExamples()
+    public static function getSingleLineExamples()
     {
         $data = array();
 
@@ -38,7 +38,7 @@ class ShortStatValuesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $realResult);
     }
 
-    public function getMultiLineExamples()
+    public static function getMultiLineExamples()
     {
         $data = array();
 

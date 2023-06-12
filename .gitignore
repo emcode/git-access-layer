@@ -3,3 +3,6 @@
 /composer.lock
 example/test.php
 *~
+/.idea
+/.phpunit.cache
+/.phpunit.result.cache

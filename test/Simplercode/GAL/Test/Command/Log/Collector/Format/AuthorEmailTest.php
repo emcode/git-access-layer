@@ -2,18 +2,18 @@
 
 namespace Simplercode\GAL\Test\Command\Log\Collector\Format;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Simplercode\GAL\Command\Log\Collector\Format\AuthorEmail;
 use Simplercode\GAL\Test\Command\Log\LogCommandFixture;
 
-class AuthorEmailTest extends PHPUnit_Framework_TestCase
+class AuthorEmailTest extends TestCase
 {
     /**
      * @var AuthorEmail
      */
     protected $collector;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->collector = new AuthorEmail();
     }
