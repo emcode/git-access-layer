@@ -21,6 +21,7 @@ jobs:
           XDEBUG_MODE: coverage
         with:
           bootstrap: test/bootstrap.php
+          testsuite: Test Suite
           configuration: phpunit.xml
           php_extensions: xdebug
           args: tests --coverage-clover ./coverage.xml
