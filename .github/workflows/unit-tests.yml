@@ -21,10 +21,10 @@ jobs:
         with:
           php_version: ${{ matrix.php-version }}
 
-      - uses: php-actions/phpstan@v3
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
         with:
           path: src/ test/
-          version: composer
           php_version: ${{ matrix.php-version }}
           configuration: phpstan.neon
 
