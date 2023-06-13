@@ -21,7 +21,9 @@ jobs:
         with:
           php_version: ${{ matrix.php-version }}
 
-      - name: PHPStan Static Analysis
+      -
+        if: ${{ matrix.php-version == '8.2' }}
+        name: PHPStan Static Analysis
         uses: php-actions/phpstan@v3
         with:
           path: src/ test/
