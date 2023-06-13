@@ -26,7 +26,7 @@ jobs:
         name: PHPStan Static Analysis
         uses: php-actions/phpstan@v3
         with:
-          path: src/ test/
+          path: lib/ test/
           php_version: ${{ matrix.php-version }}
           configuration: phpstan.neon
 
