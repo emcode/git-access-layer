@@ -6,6 +6,10 @@ on:
 
 jobs:
   build-test:
+    strategy:
+      matrix:
+        php-version: [ "8.0", "8.1", "8.2" ]
+
     runs-on: ubuntu-latest
 
     steps:
@@ -14,19 +18,30 @@ jobs:
 
       - name: Install composer and dependencies
         uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php-version }}
+
+      - uses: php-actions/phpstan@v3
+        with:
+          version: composer
+          php_version: ${{ matrix.php-version }}
+          configuration: phpstan.neon
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
           XDEBUG_MODE: coverage
         with:
+          php_version: ${{ matrix.php-version }}
           bootstrap: test/bootstrap.php
           testsuite: Test Suite
           configuration: phpunit.xml
           php_extensions: xdebug
           args: test --coverage-clover ./coverage.xml
 
-      - name: Upload to Codecov
+      -
+        if: ${{ matrix.php-version == "8.2" }}
+        name: Upload to Codecov
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODE_COV_TOKEN }}

@@ -3,6 +3,7 @@
     "description": "Git Access Layer Library",
     "license": "MIT",
     "require": {
+        "php": "^8.0",
         "symfony/process": "^6.3.0"
     },
     "require-dev": {
