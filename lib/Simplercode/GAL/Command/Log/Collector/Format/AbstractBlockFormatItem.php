@@ -6,23 +6,26 @@ use Simplercode\GAL\Collector\CollectorInterface;
 
 abstract class AbstractBlockFormatItem implements CollectorInterface
 {
-    protected $pattern = '/^%s:(?P<value>[\s\S]*?):%s/m';
-    protected $name;
+    protected string $pattern = '/^%s:(?P<value>[\s\S]*?):%s/m';
+    protected string $name;
 
-    public function collect($rawData)
+    /**
+     * @return string|array<mixed>|null
+     */
+    public function collect(string $rawData): string|array|null
     {
-        $matches = array();
+        $matches = [];
         $num = preg_match(sprintf($this->pattern, $this->name, $this->name), $rawData, $matches);
 
         if (!$num)
         {
-            return;
+            return null;
         }
 
         return $matches['value'];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }

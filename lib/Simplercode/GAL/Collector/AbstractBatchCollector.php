@@ -7,10 +7,7 @@ use Simplercode\GAL\Exception\CollectorNotFoundException;
 
 class AbstractBatchCollector implements BatchCollectorInterface
 {
-    /**
-     * @var string|null
-     */
-    protected $name;
+    protected string $name;
 
     /**
      * @var CollectorInterface[]
@@ -18,13 +15,11 @@ class AbstractBatchCollector implements BatchCollectorInterface
     protected $collectors = array();
 
     /**
-     * @param string $rawData
-     *
-     * @return string[]|array
+     * @return array<string,mixed>|string|null
      */
-    public function collect($rawData)
+    public function collect(string $rawData): array|string|null
     {
-        $result = array();
+        $result = [];
 
         foreach ($this->collectors as $name => $collectorInstance)
         {
@@ -36,10 +31,8 @@ class AbstractBatchCollector implements BatchCollectorInterface
 
     /**
      * @param CollectorInterface[] $collectors
-     *
-     * @return $this
      */
-    public function setCollectors(array $collectors)
+    public function setCollectors(array $collectors): self
     {
         $this->collectors = array();
 
@@ -53,7 +46,10 @@ class AbstractBatchCollector implements BatchCollectorInterface
         return $this;
     }
 
-    public function getCollectorNames()
+    /**
+     * @return string[]
+     */
+    public function getCollectorNames(): array
     {
         return array_keys($this->collectors);
     }
@@ -61,17 +57,17 @@ class AbstractBatchCollector implements BatchCollectorInterface
     /**
      * @return CollectorInterface[]
      */
-    public function getCollectors()
+    public function getCollectors(): array
     {
         return $this->collectors;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function addCollector(CollectorInterface $collector)
+    public function addCollector(CollectorInterface $collector): self
     {
         $name = $collector->getName();
 
@@ -85,7 +81,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
         return $this;
     }
 
-    public function getCollectorByName($name)
+    public function getCollectorByName(string $name): CollectorInterface
     {
         if (!isset($this->collectors[$name]))
         {
@@ -95,7 +91,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
         return $this;
     }
 
-    public function removeCollector($name)
+    public function removeCollector(string $name): CollectorInterface
     {
         $collector = $this->getCollectorByName($name);
         unset($this->collectors[$name]);
@@ -103,7 +99,7 @@ class AbstractBatchCollector implements BatchCollectorInterface
         return $collector;
     }
 
-    public function replaceCollector(CollectorInterface $collector)
+    public function replaceCollector(CollectorInterface $collector): self
     {
         $name = $collector->getName();
         $this->collectors[$name] = $collector;

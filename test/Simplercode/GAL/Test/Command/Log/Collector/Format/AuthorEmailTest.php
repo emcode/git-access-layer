@@ -18,7 +18,7 @@ class AuthorEmailTest extends TestCase
         $this->collector = new AuthorEmail();
     }
 
-    public function testAuthorEmailIsExtractedCorrectly()
+    public function testAuthorEmailIsExtractedCorrectly(): void
     {
         $extractedData = $this->collector->collect(LogCommandFixture::PARSING_FIXTURE_RAW_COMMIT);
         $this->assertEquals('john.author@example.abc', $extractedData);

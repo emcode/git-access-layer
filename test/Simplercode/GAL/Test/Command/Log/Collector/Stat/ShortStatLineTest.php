@@ -5,6 +5,9 @@ namespace Simplercode\GAL\Test\Command\Log\Collector\Stat;
 use PHPUnit\Framework\TestCase;
 use Simplercode\GAL\Command\Log\Collector\Stat\ShortStatLine;
 
+/**
+ * @phpstan-type ExampleTestCases array<int,string[]>
+ */
 class ShortStatLineTest extends TestCase
 {
     /**
@@ -17,13 +20,16 @@ class ShortStatLineTest extends TestCase
         $this->collector = new ShortStatLine();
     }
 
-    public static function getLineExamples()
+    /**
+     * @return ExampleTestCases
+     */
+    public static function getLineExamples(): array
     {
-        $data = array();
+        $data = [];
 
         foreach(ShortStatFixture::$lineExamples as $lines => $result)
         {
-            $data[] = array($lines, $result);
+            $data[] = [$lines, $result];
         }
 
         return $data;
@@ -32,7 +38,7 @@ class ShortStatLineTest extends TestCase
     /**
      * @dataProvider getLineExamples
      */
-    public function testStatLineIsExtractedCorrectlyFromMultipleLines($commitLines, $expectedResult)
+    public function testStatLineIsExtractedCorrectlyFromMultipleLines(string $commitLines, string $expectedResult): void
     {
         $realResult = $this->collector->collect($commitLines);
         $this->assertEquals($expectedResult, $realResult);

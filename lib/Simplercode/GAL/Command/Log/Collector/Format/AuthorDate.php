@@ -4,5 +4,5 @@ namespace Simplercode\GAL\Command\Log\Collector\Format;
 
 class AuthorDate extends AbstractInlineFormatItem
 {
-    protected $name = 'author_date';
+    protected string $name = 'author_date';
 }

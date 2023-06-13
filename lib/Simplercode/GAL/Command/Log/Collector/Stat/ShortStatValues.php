@@ -6,19 +6,22 @@ use Simplercode\GAL\Collector\CollectorInterface;
 
 class ShortStatValues implements CollectorInterface
 {
-    protected $numberLabelPattern = "(?P<%s>\d+) (?:%s)";
-    protected $statsPattern = '/%s((%s)|(%s)|(?:))((%s)|(%s)|(?:))$/m';
-    protected $pattern;
+    protected string $numberLabelPattern = "(?P<%s>\d+) (?:%s)";
+    protected string $statsPattern = '/%s((%s)|(%s)|(?:))((%s)|(%s)|(?:))$/m';
+    protected ?string $pattern = null;
 
-    protected $regexLabelToValueType = array(
+    /**
+     * @var array<string,string>
+     */
+    protected array $regexLabelToValueType = [
         'abc_file_num' => 'file.* changed, ',
         'fst_insertion_num' => 'insertion.*\(\+\), ',
         'fst_deletion_num' => 'deletion.*\(\-\)',
         'sec_insertion_num' => 'insertion.*\(\+\)',
         'sec_deletion_num' => 'deletion.*\(\-\)',
-    );
+    ];
 
-    protected function getPattern()
+    protected function getPattern(): string
     {
         if (null === $this->pattern)
         {
@@ -28,9 +31,9 @@ class ShortStatValues implements CollectorInterface
         return $this->pattern;
     }
 
-    protected function createPattern()
+    protected function createPattern(): string
     {
-        $subPatterns = array();
+        $subPatterns = [];
 
         foreach ($this->regexLabelToValueType as $label => $type)
         {
@@ -42,14 +45,17 @@ class ShortStatValues implements CollectorInterface
         return $pattern;
     }
 
-    public function collect($rawData)
+    /**
+     * @return array<string,int|null>|string
+     */
+    public function collect(string $rawData): array|string
     {
         $matches = array();
         $num = preg_match($this->getPattern(), $rawData, $matches);
 
         if (!$num)
         {
-            return;
+            return [];
         }
 
         $collectingResult = $this->processMatchingResult($matches);
@@ -57,9 +63,13 @@ class ShortStatValues implements CollectorInterface
         return $collectingResult;
     }
 
-    public function processMatchingResult(array $matches)
+    /**
+     * @param array<string,string> $matches
+     * @return array<string,int|null>
+     */
+    public function processMatchingResult(array $matches): array
     {
-        $result = array();
+        $result = [];
 
         foreach ($this->regexLabelToValueType as $regexLabel => $valueType)
         {
@@ -71,7 +81,7 @@ class ShortStatValues implements CollectorInterface
             $foundValue = ($matches[$regexLabel] !== '') ? ((int) $matches[$regexLabel]) : null;
             $endUserLabel = substr($regexLabel, 4);
 
-            if (!isset($result[$endUserLabel]) || (null === $result[$endUserLabel]))
+            if (!isset($result[$endUserLabel]))
             {
                 $result[$endUserLabel] = $foundValue;
             }
@@ -80,7 +90,7 @@ class ShortStatValues implements CollectorInterface
         return $result;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'shortstat_values';
     }

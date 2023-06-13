@@ -5,28 +5,22 @@ namespace Simplercode\GAL\Collector;
 interface BatchCollectorInterface extends CollectorInterface
 {
     /**
-     * @param string $rawData
-     *
-     * @return string[]|array
+     * @return string|null|array<int|string,mixed>
      */
-    public function collect($rawData);
+    public function collect(string $rawData): string|array|null;
 
     /**
      * @param CollectorInterface $collector
-     *
-     * @return $this
      */
-    public function addCollector(CollectorInterface $collector);
+    public function addCollector(CollectorInterface $collector): self;
 
     /**
      * @param CollectorInterface[] $collectors
-     *
-     * @return $this
      */
-    public function setCollectors(array $collectors);
+    public function setCollectors(array $collectors): self;
 
     /**
      * @return CollectorInterface[]
      */
-    public function getCollectors();
+    public function getCollectors(): array;
 }

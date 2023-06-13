@@ -4,6 +4,9 @@ namespace Simplercode\GAL\Test\Command\Log\Collector\Stat;
 
 class ShortStatFixture
 {
+    /**
+     * @var array<string,string>
+     */
     public static $lineExamples = array(
         self::SHORT_STAT_1_1_1 => '1 file changed, 1 insertion(+), 1 deletion(-)',
         self::SHORT_STAT_3_3_3 => '3 files changed, 3 insertions(+), 3 deletions(-)',
@@ -16,6 +19,9 @@ class ShortStatFixture
         self::SHORT_STAT_1_N_1 => '1 file changed, 1 deletion(-)',
     );
 
+    /**
+     * @var array<string, array<string,int|null>>
+     */
     public static $singlelineValueExamples = array(
         '4 files changed, 2 insertion(+), 3 deletion(-)' => array(
             'file_num' => 4,
@@ -64,6 +70,9 @@ class ShortStatFixture
         ),
     );
 
+    /**
+     * @var array<string,array<string,int|null>>
+     */
     public static $multilineValueExamples = array(
         self::SHORT_STAT_1_1_1 => array(
             'file_num' => 1,

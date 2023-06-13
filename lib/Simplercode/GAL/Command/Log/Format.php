@@ -32,6 +32,9 @@ class Format
     const BODY = 'body';
     const RAW_BODY = 'raw_body';
 
+    /**
+     * @var string[]
+     */
     public static $inlineFormats = array(
         self::ABBR_HASH => '%h',
         self::HASH => '%H',
@@ -54,6 +57,9 @@ class Format
         self::REF_NAMES => '%d',
     );
 
+    /**
+     * @var string[]
+     */
     public static $blockFormats = array(
         self::BODY => '%b',
         self::RAW_BODY => '%B',

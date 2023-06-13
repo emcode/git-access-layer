@@ -8,12 +8,15 @@ use Simplercode\GAL\Command\Log\Format;
 
 class LogCommand extends AbstractCommand
 {
-    public function getCommandName()
+    public function getCommandName(): string
     {
         return 'log';
     }
 
-    public function parseOutput($output)
+    /**
+     * @return array<int<0, max>, array<int|string, mixed>|string|null>
+     */
+    public function parseOutput(string $output): array
     {
         $rawCommits = $this->splitOutputToCommits($output);
         $commits = $this->parseRawCommits($rawCommits);
@@ -21,7 +24,10 @@ class LogCommand extends AbstractCommand
         return $commits;
     }
 
-    public function splitOutputToCommits($output)
+    /**
+     * @return string[]
+     */
+    public function splitOutputToCommits(string $output): array
     {
         $commits = explode(Format::CS, $output);
         array_shift($commits);
@@ -29,9 +35,13 @@ class LogCommand extends AbstractCommand
         return $commits;
     }
 
-    public function parseRawCommits(array $rawCommits)
+    /**
+     * @param string[] $rawCommits
+     * @return array<int<0, max>, array<int|string, mixed>|string|null>
+     */
+    public function parseRawCommits(array $rawCommits): array
     {
-        $result = array();
+        $result = [];
 
         if ($this->collector instanceof BatchCollectorInterface)
         {
@@ -46,16 +56,16 @@ class LogCommand extends AbstractCommand
 
             foreach($rawCommits as $rawCommitString)
             {
-                $result[] = array($name => $this->collector->collect($rawCommitString));
+                $result[] = [ $name => $this->collector->collect($rawCommitString) ];
             }
         }
 
         return $result;
     }
 
-    public static function getDefaultFormat()
+    public static function getDefaultFormat(): string
     {
-        $parts = array();
+        $parts = [];
 
         foreach(Format::$inlineFormats as $label => $format)
         {

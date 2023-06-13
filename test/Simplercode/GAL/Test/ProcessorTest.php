@@ -6,37 +6,41 @@ use PHPUnit\Framework\TestCase;
 
 class ProcessorTest extends TestCase
 {
-    public function testDefaultPathToBinIsGit()
+    public function testDefaultPathToBinIsGit(): void
     {
         $processor = new Processor();
         $this->assertEquals($processor->getPathToGitBin(), 'git');
     }
 
-    public function testCustomPathToBinCanBeSetViaConstructor()
+    public function testCustomPathToBinCanBeSetViaConstructor(): void
     {
         $binPath = '/custom/path/git';
         $processor = new Processor(null, true, $binPath);
         $this->assertEquals($processor->getPathToGitBin(), $binPath);
     }
 
-    public function testBareRepoArgsCanBeSetViaConstructor()
+    public function testBareRepoArgsCanBeSetViaConstructor(): void
     {
         $isBare = true;
         $repoPath = '/custom/path/to/bare/repo';
         $processor = new Processor($repoPath, $isBare);
-        $this->assertContains(sprintf('--git-dir=%s', $repoPath), $processor->getRepoArgs());
+        $args = $processor->getRepoArgs();
+        $this->assertIsArray($args);
+        $this->assertContains(sprintf('--git-dir=%s', $repoPath), $args);
     }
 
-    public function testNonBareRepoArgsCanBeSetViaConstructor()
+    public function testNonBareRepoArgsCanBeSetViaConstructor(): void
     {
         $isBare = false;
         $repoPath = '/custom/path/to/repo';
         $processor = new Processor($repoPath, $isBare);
-        $this->assertContains(sprintf('--git-dir=%s/.git', $repoPath), $processor->getRepoArgs());
-        $this->assertContains(sprintf('--work-tree=%s', $repoPath), $processor->getRepoArgs());
+        $args = $processor->getRepoArgs();
+        $this->assertIsArray($args);
+        $this->assertContains(sprintf('--git-dir=%s/.git', $repoPath), $args);
+        $this->assertContains(sprintf('--work-tree=%s', $repoPath), $args);
     }
 
-    public function testCreateRepoArgsMethodForNonBareRepo()
+    public function testCreateRepoArgsMethodForNonBareRepo(): void
     {
         $isBare = false;
         $repoPath = '/custom/path/to/repo';
@@ -47,7 +51,7 @@ class ProcessorTest extends TestCase
         $this->assertCount(2, $nonBareArgs);
     }
 
-    public function testCreateRepoArgsMethodForBareRepo()
+    public function testCreateRepoArgsMethodForBareRepo(): void
     {
         $isBare = true;
         $repoPath = '/custom/path/to/another/repo';
@@ -57,7 +61,7 @@ class ProcessorTest extends TestCase
         $this->assertCount(1, $bareArgs);
     }
 
-    public function testInitArgsAreNullifiedAfterSettingGitBinPath()
+    public function testInitArgsAreNullifiedAfterSettingGitBinPath(): void
     {
         $processor = new Processor();
         $processor->setInitArgs(array());
@@ -65,7 +69,7 @@ class ProcessorTest extends TestCase
         $this->assertFalse($processor->areInitArgsSet());
     }
 
-    public function testInitArgsAreNullifiedAfterSettingRepoArgs()
+    public function testInitArgsAreNullifiedAfterSettingRepoArgs(): void
     {
         $processor = new Processor();
         $processor->setInitArgs(array());
@@ -73,7 +77,7 @@ class ProcessorTest extends TestCase
         $this->assertFalse($processor->areInitArgsSet());
     }
 
-    public function testInitArgsAreNullifiedAfterSettingRepoPath()
+    public function testInitArgsAreNullifiedAfterSettingRepoPath(): void
     {
         $processor = new Processor();
         $processor->setInitArgs(array());

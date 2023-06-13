@@ -18,10 +18,10 @@ class RawBodyTest extends TestCase
         $this->collector = new RawBody();
     }
 
-    public function testRawBodyIsExtractedCorrectly()
+    public function testRawBodyIsExtractedCorrectly(): void
     {
         $extractedData = $this->collector->collect(LogCommandFixture::PARSING_FIXTURE_RAW_COMMIT);
-        $this->assertTrue(null !== $extractedData);
+        $this->assertIsString($extractedData);
         $this->assertStringContainsString('added ability to easy list events', $extractedData);
     }
 }

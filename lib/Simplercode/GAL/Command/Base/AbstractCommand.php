@@ -34,14 +34,13 @@ abstract class AbstractCommand implements CommandInterface, CollectableCommandIn
     /**
      * @return string
      */
-    abstract public function getCommandName();
+    abstract public function getCommandName(): string;
 
     /**
-     * @param array $runtimeArgs
-     *
-     * @return mixed
+     * @param array<int,mixed> $runtimeArgs
+     * @return array<int|string,mixed>|string|null
      */
-    public function execute(array $runtimeArgs)
+    public function execute(array $runtimeArgs): array|string|null
     {
         array_unshift($runtimeArgs, $this->getCommandName());
         $output = $this->processor->execute($runtimeArgs);
@@ -51,11 +50,9 @@ abstract class AbstractCommand implements CommandInterface, CollectableCommandIn
     }
 
     /**
-     * @param $rawData
-     *
-     * @return mixed
+     * @return array<int|string,mixed>|string|null
      */
-    public function parseOutput($rawData)
+    public function parseOutput(string $rawData): array|string|null
     {
         return $this->collector->collect($rawData);
     }

@@ -18,7 +18,7 @@ class SubjectTest extends TestCase
         $this->collector = new Subject();
     }
 
-    public function testSubjectIsExtractedCorrectly()
+    public function testSubjectIsExtractedCorrectly(): void
     {
         $extractedData = $this->collector->collect(LogCommandFixture::PARSING_FIXTURE_RAW_COMMIT);
         $this->assertEquals('Improvements in LogEvent entity - added ability to easy list events using logger view helper', $extractedData);

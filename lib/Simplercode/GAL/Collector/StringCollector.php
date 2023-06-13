@@ -7,17 +7,12 @@ class StringCollector implements CollectorInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'string';
     }
 
-    /**
-     * @param string $rawData
-     *
-     * @return string
-     */
-    public function collect($rawData)
+    public function collect(string $rawData): string
     {
         return (string) $rawData;
     }

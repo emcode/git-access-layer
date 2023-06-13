@@ -18,7 +18,7 @@ class AuthorNameTest extends TestCase
         $this->collector = new AuthorName();
     }
 
-    public function testAuthorNameIsExtractedCorrectly()
+    public function testAuthorNameIsExtractedCorrectly(): void
     {
         $extractedData = $this->collector->collect(LogCommandFixture::PARSING_FIXTURE_RAW_COMMIT);
         $this->assertEquals('John Author', $extractedData);

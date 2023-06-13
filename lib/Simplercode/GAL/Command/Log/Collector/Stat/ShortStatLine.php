@@ -6,22 +6,26 @@ use Simplercode\GAL\Collector\CollectorInterface;
 
 class ShortStatLine implements CollectorInterface
 {
-    protected $pattern = "/(?:\d+) file.* changed, ((?:\d+ deletion.*\(\-\))|(?:\d+ insertion.*\(\+\)))((?:[delinstio0-9,\ \(\)\-\+]+)|(?:))/m";
+    protected string $pattern = "/(?:\d+) file.* changed, ((?:\d+ deletion.*\(\-\))|(?:\d+ insertion.*\(\+\)))((?:[delinstio0-9,\ \(\)\-\+]+)|(?:))/m";
 
-    public function collect($rawData)
+    /**
+     * @param string $rawData
+     * @return string|array<mixed>|null
+     */
+    public function collect($rawData): string|array|null
     {
-        $matches = array();
+        $matches = [];
         $num = preg_match($this->pattern, $rawData, $matches);
 
         if (!$num)
         {
-            return;
+            return null;
         }
 
         return $matches[0];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'shortstat_line';
     }

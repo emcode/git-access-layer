@@ -13,12 +13,7 @@ class DynamicCommand extends AbstractCommand
      */
     protected $commandName;
 
-    /**
-     * @param array $runtimeArgs
-     *
-     * @return mixed
-     */
-    public function execute(array $runtimeArgs)
+    public function execute(array $runtimeArgs): array|string|null
     {
         if (null === $this->commandName)
         {
@@ -28,20 +23,12 @@ class DynamicCommand extends AbstractCommand
         return parent::execute($runtimeArgs);
     }
 
-    /**
-     * @return string|null
-     */
-    public function getCommandName()
+    public function getCommandName(): string
     {
         return $this->commandName;
     }
 
-    /**
-     * @param string $commandName
-     *
-     * @return DynamicCommand
-     */
-    public function setCommandName($commandName)
+    public function setCommandName(string $commandName): self
     {
         $this->commandName = $commandName;
 
